@@ -2,11 +2,12 @@ export default function Header() {
     return (
         <div className="navbar bg-base-100">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">LaunchStack</a>
+          <a className="btn btn-ghost text-xl" href="/">LaunchStack</a>
         </div>
         <div className="flex-none">
           <ul className="menu menu-horizontal px-1">
-            <li><a>Login</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/product">Product</a></li>
             <li>
               <details>
                 <summary>Account</summary>

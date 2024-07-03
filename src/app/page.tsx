@@ -6,8 +6,7 @@ import TestimonialSection from "@/components/TestimonialsSection";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col justify-between p-8">    
-      <Header />
+    <main className="flex min-h-screen flex-col justify-between p-8">        
       <HeroMain />
       <InstructionsSectionCode />
       <TestimonialSection />

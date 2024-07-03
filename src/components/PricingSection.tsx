@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function PricingSection() {
   return (
     <div className="bg-base-200 py-24">
