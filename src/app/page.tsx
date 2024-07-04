@@ -1,4 +1,3 @@
-import Header from "@/components/Header";
 import HeroMain from "@/components/HeroMain";
 import InstructionsSectionCode from "@/components/InstructionsSectionCode";
 import PricingSection from "@/components/PricingSection";

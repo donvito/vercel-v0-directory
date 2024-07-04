@@ -3,11 +3,25 @@ import React, { useState } from 'react';
 export default function LoginSection() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const [emailError, setEmailError] = useState('');
+  
   const handleEmailLogin = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     // Implement email login logic here
     console.log('Email login:', email, password);
+  
+
+  const validateEmail = (email: string) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(String(email).toLowerCase());
+  };
+
+  if (!validateEmail(email)) {
+    setEmailError('Invalid email format');
+    return;
+  } else {
+    setEmailError('');
+  }
   };
 
   const handleGoogleLogin = () => {
@@ -40,6 +54,9 @@ export default function LoginSection() {
                 onChange={(e) => setEmail(e.target.value)}
                 required 
               />
+              {emailError && (
+                <div className="text-error text-sm mt-1">{emailError}</div>
+              )}
             </div>
             <div className="form-control mt-4">
               <label className="label">

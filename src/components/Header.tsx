@@ -8,6 +8,8 @@ export default function Header() {
           <ul className="menu menu-horizontal px-1">
             <li><a href="/login">Login</a></li>
             <li><a href="/product">Product</a></li>
+            <li><a href="/blogs">Blogs</a></li>
+            <li><a href="/forms/animated">Forms</a></li>
             <li>
               <details>
                 <summary>Account</summary>
