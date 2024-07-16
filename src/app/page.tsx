@@ -30,7 +30,8 @@ export default function Home() {
         <>
         //<main className="flex min-h-screen flex-col justify-between p-8">
             <p>Not Signed In</p>
-            <button onClick={() => signIn('github')}>Sign in with github</button>
+            <button onClick={() => signIn('github')}>Sign in with Github</button>
+            <button onClick={() => signIn('google')}>Sign in with Google</button>
         //</main>
         </>
     );
