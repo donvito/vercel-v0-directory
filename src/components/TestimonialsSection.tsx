@@ -28,8 +28,8 @@ const TestimonialSection = () => {
     },
   ];
 
-  const renderStars = (rating) => {
-    return Array(5).fill().map((_, index) => (
+  const renderStars = (rating: number) => {
+    return Array(5).fill(0).map((_, index) => (
       <Star key={index} className={`w-5 h-5 ${index < rating ? 'text-yellow-400' : 'text-gray-300'}`} />
     ));
   };
