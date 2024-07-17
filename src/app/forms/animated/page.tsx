@@ -1,11 +1,13 @@
-'use client'
-
 import AnimatedForm from "@/components/AnimatedForm";
+import AuthWrapper from "@/components/AuthWrapper";
 
-export default function LoginPage() {
+export default async function LoginPage() {
+
   return (
-    <>    
-      <AnimatedForm />
+    <>
+      <AuthWrapper>
+        <AnimatedForm />
+      </AuthWrapper>
     </>
   );
 }

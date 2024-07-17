@@ -1,15 +1,16 @@
-import HeroMain from "@/components/HeroMain";
-import InstructionsSectionCode from "@/components/InstructionsSectionCode";
-import PricingSection from "@/components/PricingSection";
-import TestimonialSection from "@/components/TestimonialsSection";
+import PricingSection from "@/components/PricingSection"
+import { auth } from "../auth"
+import CoursePage from "@/components/CoursePage"
+import TestimonialSection from "@/components/TestimonialsSection"
+import HeroMain from "@/components/HeroMain"
 
-export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col justify-between p-8">        
-      <HeroMain />
-      <InstructionsSectionCode />
-      <TestimonialSection />
-      <PricingSection />
-    </main>
-  );
+export default async function Home() {
+    return (
+        <>
+            <HeroMain />
+            <TestimonialSection />
+            <PricingSection />
+
+        </>
+    )
 }

@@ -1,9 +1,12 @@
+import AuthWrapper from "@/components/AuthWrapper";
 import ProductDetailSection from "@/components/ProductDetailSection";
+export default async function Home() {
 
-export default function Home() {
   return (
-    <>    
-      <ProductDetailSection />
+    <>
+      <AuthWrapper>
+        <ProductDetailSection />
+      </AuthWrapper>
     </>
   );
 }

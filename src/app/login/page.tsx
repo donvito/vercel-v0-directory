@@ -1,11 +1,10 @@
-'use client'
+import LoginSocial from "@/components/LoginSocial";
 
-import LoginSection from "@/components/LoginSection";
+export default async function LoginPage() {
+    return (
+      <>    
+        <LoginSocial />
+      </>
+    );
 
-export default function LoginPage() {
-  return (
-    <>    
-      <LoginSection />
-    </>
-  );
 }

@@ -64,7 +64,7 @@ const InstructionsSectionCode = () => {
                 <div className="mockup-code">
                   <pre data-prefix="$"><code>npx create-next-app@latest my-app \</code></pre>
                   <pre data-prefix=""><code>  --use-npm \</code></pre>
-                  <pre data-prefix=""><code>  --example "https://github.com/LaunchStack/next-template"</code></pre>
+                  <pre data-prefix=""><code>  --example &quot;https://github.com/LaunchStack/next-template&quot;</code></pre>
                 </div>
                 <h4 className="text-xl mt-8 mb-4 flex items-center">
                   <Code className="mr-2 text-primary" />
