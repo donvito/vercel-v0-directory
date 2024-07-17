@@ -15,13 +15,19 @@ export default async function Header() {
                 <ul className="menu menu-horizontal px-1">
                     {!session ? (
                         <>
-                            <li><SignIn/></li>
+                            <li><Link href="/">Home</Link></li>
+                            <li><Link href="/blogs">Blogs</Link></li>
+                            <li><Link href="/product">Product</Link></li>                            
+                            <li><Link href="/forms/animated">Forms</Link></li>
+                            <li><Link href="/course">Course</Link></li>
                         </>
                     ) : (
-                        <>
-                            <li><Link href="/product">Product</Link></li>
-                            <li><Link href="/blogs">Blogs</Link></li>
-                            <li><Link href="/forms/animated">Forms</Link></li>
+                        <>  
+                            <li><Link href="/">Home</Link></li>
+                            <li><Link href="/blogs">Blogs</Link></li>  
+                            <li><Link href="/product">Product</Link></li>                            
+                            <li><Link href="/forms/animated">Forms</Link></li>   
+                            <li><Link href="/course">Course</Link></li>                   
                             <li>
                                 <details>
                                     <summary>
@@ -30,10 +36,10 @@ export default async function Header() {
                                     <ul className="bg-base-100 rounded-t-none p-2">
                                         <li><span>{session.user?.email}</span></li>
                                         <li><Link href="/settings">Settings</Link></li>
+                                        <li><SignOut /></li>
                                     </ul>
                                 </details>
-                            </li>
-                            <li><SignOut /></li>
+                            </li>                           
                         </>
                     )}
                 </ul>

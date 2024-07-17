@@ -3,13 +3,8 @@ import { auth } from "../auth"
 import {redirect} from "next/navigation"
 
 export default async function ProductDetailSection() {
-    const session = await auth()
-
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100 py-12">
-            {!session ? (
-                redirect("/login")
-            ) : (
                 <>
                     <div className="container mx-auto px-4 flex flex-col lg:flex-row gap-12 w-full">
                         <div className="flex flex-col items-center lg:items-start w-full lg:w-1/2">
@@ -68,8 +63,7 @@ export default async function ProductDetailSection() {
                             <button className="btn btn-primary w-full">Add To Cart</button>
                         </div>
                     </div>
-                </>)
-            }
+                </>
         </div>
     );
 };

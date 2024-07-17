@@ -1,12 +1,9 @@
-'use client'
+import LoginSocial from "@/components/LoginSocial";
 
-import LoginSection from "@/components/LoginSection";
-import { useSession } from "next-auth/react"
-
-export default function LoginPage() {
+export default async function LoginPage() {
     return (
       <>    
-        <LoginSection />
+        <LoginSocial />
       </>
     );
 
