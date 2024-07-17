@@ -1,9 +1,19 @@
+'use client'
+
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, ArrowLeft } from 'lucide-react';
 import 'daisyui/dist/full.css';
 
-const formConfig = [
+interface FormConfigItem {
+  id: number;
+  type: 'text' | 'email' | 'select' | 'multiple' | 'review';
+  question: string;
+  tip?: string;
+  options?: string[];
+}
+
+const formConfig: FormConfigItem[] = [
   {
     id: 1,
     type: 'text',
@@ -37,22 +47,26 @@ const formConfig = [
   },
 ];
 
-const AnimatedForm = () => {
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [answers, setAnswers] = useState({});
-  const [currentAnswer, setCurrentAnswer] = useState('');
+type Answer = string | string[];
+
+interface Answers {
+  [key: number]: Answer;
+}
+
+const AnimatedForm: React.FC = () => {
+  const [currentQuestion, setCurrentQuestion] = useState<number>(0);
+  const [answers, setAnswers] = useState<Answers>({});
+  const [currentAnswer, setCurrentAnswer] = useState<Answer>('');
 
   const handleNext = () => {
     if (formConfig[currentQuestion].type !== 'review') {
-      setAnswers({ ...answers, [currentQuestion]: currentAnswer });
-      setCurrentAnswer('');
+      setAnswers((prev) => ({ ...prev, [currentQuestion]: currentAnswer }));
     }
     setCurrentQuestion((prev) => Math.min(prev + 1, formConfig.length - 1));
   };
 
   const handlePrev = () => {
     setCurrentQuestion((prev) => Math.max(prev - 1, 0));
-    setCurrentAnswer(answers[currentQuestion - 1] || '');
   };
 
   const handleFinalSubmit = () => {
@@ -60,7 +74,7 @@ const AnimatedForm = () => {
     // Add your form submission logic here
   };
 
-  const handleKeyPress = (e) => {
+  const handleKeyPress = (e: KeyboardEvent) => {
     if (e.key === 'Enter') {
       e.preventDefault();
       if (currentQuestion < formConfig.length - 1) {
@@ -78,6 +92,10 @@ const AnimatedForm = () => {
     };
   }, [currentQuestion, currentAnswer]);
 
+  useEffect(() => {
+    setCurrentAnswer(answers[currentQuestion] || '');
+  }, [currentQuestion, answers]);
+
   const renderInput = () => {
     const question = formConfig[currentQuestion];
     switch (question.type) {
@@ -86,7 +104,7 @@ const AnimatedForm = () => {
         return (
           <input
             type={question.type}
-            value={currentAnswer}
+            value={currentAnswer as string}
             onChange={(e) => setCurrentAnswer(e.target.value)}
             className="w-full p-3 mt-2 text-lg input input-bordered input-primary"
             placeholder={`Enter your ${question.type}`}
@@ -95,12 +113,12 @@ const AnimatedForm = () => {
       case 'select':
         return (
           <select
-            value={currentAnswer}
+            value={currentAnswer as string}
             onChange={(e) => setCurrentAnswer(e.target.value)}
             className="w-full p-3 mt-2 text-lg select select-bordered select-primary"
           >
             <option value="">Select an option</option>
-            {question.options.map((option) => (
+            {question.options?.map((option) => (
               <option key={option} value={option}>
                 {option}
               </option>
@@ -110,17 +128,19 @@ const AnimatedForm = () => {
       case 'multiple':
         return (
           <div className="flex flex-col gap-2">
-            {question.options.map((option) => (
+            {question.options?.map((option) => (
               <label key={option} className="flex items-center space-x-3">
                 <input
                   type="checkbox"
-                  checked={currentAnswer.includes(option)}
-                  value={option}
+                  checked={(currentAnswer as string[]).includes(option)}
                   onChange={(e) => {
                     const checked = e.target.checked;
-                    setCurrentAnswer((prev) =>
-                      checked ? [...prev, option] : prev.filter((opt) => opt !== option)
-                    );
+                    setCurrentAnswer((prev) => {
+                      const prevArray = Array.isArray(prev) ? prev : [];
+                      return checked
+                        ? [...prevArray, option]
+                        : prevArray.filter((opt) => opt !== option);
+                    });
                   }}
                   className="checkbox checkbox-primary"
                 />
@@ -132,9 +152,9 @@ const AnimatedForm = () => {
       case 'review':
         return (
           <div className="flex flex-col gap-4">
-            {Object.entries(answers).map(([key, value], index) => (
-              <div key={index} className="p-4 bg-gray-100 rounded-lg">
-                <h3 className="font-semibold">{formConfig[key].question}</h3>
+            {Object.entries(answers).map(([key, value]) => (
+              <div key={key} className="p-4 bg-gray-100 rounded-lg">
+                <h3 className="font-semibold">{formConfig[Number(key)].question}</h3>
                 <p>{Array.isArray(value) ? value.join(', ') : value}</p>
               </div>
             ))}
@@ -144,14 +164,6 @@ const AnimatedForm = () => {
         return null;
     }
   };
-
-  useEffect(() => {
-    if (currentQuestion in answers) {
-      setCurrentAnswer(answers[currentQuestion]);
-    } else {
-      setCurrentAnswer('');
-    }
-  }, [currentQuestion]);
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-purple-400 to-indigo-600">
