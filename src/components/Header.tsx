@@ -1,7 +1,6 @@
 import { auth } from "../auth"
 import Link from "next/link"
 import { SignOut } from "@/components/SignOut"
-import { SignIn } from "@/components/SignIn";
 
 export default async function Header() {
     const session = await auth()
