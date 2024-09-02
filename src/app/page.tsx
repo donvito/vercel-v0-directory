@@ -1,16 +1,10 @@
-import PricingSection from "@/components/PricingSection"
 import { auth } from "../auth"
-import CoursePage from "@/components/CoursePage"
-import TestimonialSection from "@/components/TestimonialsSection"
-import HeroMain from "@/components/HeroMain"
+import V0GenerationPage from "@/components/V0GenerationPage"
 
 export default async function Home() {
     return (
-        <>
-            <HeroMain />
-            <TestimonialSection />
-            <PricingSection />
-
+        <>       
+            <V0GenerationPage />
         </>
     )
 }

@@ -8,25 +8,19 @@ export default async function Header() {
     return (
         <div className="navbar bg-base-100">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl" href="/">LaunchStack</a>
+          <a className="btn btn-ghost text-med" href="/">Curated v0</a>
         </div>
         <div className="flex-none">
                 <ul className="menu menu-horizontal px-1">
                     {!session ? (
                         <>
-                            <li><Link href="/">Home</Link></li>
-                            <li><Link href="/blogs">Blogs</Link></li>
-                            <li><Link href="/product">Product</Link></li>                            
-                            <li><Link href="/forms/animated">Forms</Link></li>
-                            <li><Link href="/course">Course</Link></li>
+                            <li><Link href="/forms/animated">Contribute</Link></li>
+                            <li><Link href="https://donvitocodes.com">Visit my website</Link></li>   
                         </>
                     ) : (
                         <>  
-                            <li><Link href="/">Home</Link></li>
-                            <li><Link href="/blogs">Blogs</Link></li>  
-                            <li><Link href="/product">Product</Link></li>                            
-                            <li><Link href="/forms/animated">Forms</Link></li>   
-                            <li><Link href="/course">Course</Link></li>                   
+                            {/* <li><Link href="/">Generations</Link></li> */}
+                            <li><Link href="/forms/animated">Contribute</Link></li>   
                             <li>
                                 <details>
                                     <summary>
@@ -46,4 +40,3 @@ export default async function Header() {
       </div>
     );
   }
-  
