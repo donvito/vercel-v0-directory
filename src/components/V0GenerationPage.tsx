@@ -9,8 +9,12 @@ export default function V0GenerationPage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('/api/generations-supa');
-      console.log(response);
+      const response = await fetch('/api/generations-supa', {
+        method: 'GET',
+        headers: {
+          'Cache-Control': 'no-cache'
+        }
+      });
       const data = await response.json();
       setGenerations(data);
     };
