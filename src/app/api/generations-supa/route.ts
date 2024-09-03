@@ -5,7 +5,10 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+export const  revalidate = 60;
+
 export async function GET() {
+
   const { data, error } = await supabase
     .from('v0_generations')
     .select('*')
@@ -22,9 +25,5 @@ export async function GET() {
     authorV0ProfileId: item.author_v0_profile_id,
   }));
 
-  return NextResponse.json(remappedData, {
-    headers: {
-      'Cache-Control': 'no-store, max-age=0',
-    },
-  });
+  return NextResponse.json(remappedData);
 }
