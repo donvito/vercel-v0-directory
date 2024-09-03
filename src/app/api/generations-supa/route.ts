@@ -22,5 +22,9 @@ export async function GET() {
     authorV0ProfileId: item.author_v0_profile_id,
   }));
 
-  return NextResponse.json(remappedData);
+  return NextResponse.json(remappedData, {
+    headers: {
+      'Cache-Control': 'no-store, max-age=0',
+    },
+  });
 }
