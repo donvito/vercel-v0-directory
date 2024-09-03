@@ -13,7 +13,8 @@ export default function V0GenerationPage() {
         method: 'GET',
         headers: {
           'Cache-Control': 'no-cache'
-        }
+        },
+        next: { revalidate: 60 }
       });
       const data = await response.json();
       setGenerations(data);
